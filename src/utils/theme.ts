@@ -8,8 +8,8 @@ export type Theme = {
 
 export default {
   button: {
-    create: 'green',
-    remove: 'red',
-    return: 'blue',
+    green: 'green',
+    red: 'red',
+    blue: 'blue',
   },
 } as Theme;

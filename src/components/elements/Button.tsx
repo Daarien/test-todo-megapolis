@@ -4,7 +4,7 @@ import { Theme } from '../../utils/theme';
 
 export interface iButton extends ButtonHTMLAttributes<HTMLButtonElement> {}
 
-export type Variants = 'create' | 'remove' | 'return';
+export type Variants = 'green' | 'blue' | 'red';
 
 interface ButtonProps extends iButton, ThemeProps<Theme> {
   variant: Variants;

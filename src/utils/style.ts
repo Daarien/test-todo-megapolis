@@ -26,7 +26,12 @@ const GlobalStyles = createGlobalStyle`
       text-decoration: none;
     }
   }
-  
+
+  .custom-table-row {
+    td {
+      padding: 0.4rem 0.75rem !important;
+    }
+  }
 `;
 
 export default GlobalStyles;
