@@ -12,6 +12,10 @@ interface Props extends FaProps {
   onClick?: () => void;
 }
 
-export default function FaIcon(props: Props) {
-  return <FontAwesomeIcon {...props} />;
+export default function FaIcon({ icon, size, ...other }: Props) {
+  return (
+    <span {...other}>
+      <FontAwesomeIcon icon={icon} size={size} />
+    </span>
+  );
 }

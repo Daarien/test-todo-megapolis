@@ -1,21 +1,24 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import { connect } from 'react-redux';
 import { Table, Container, Row, Col } from 'react-bootstrap';
 import { dispatcher, State } from './store/todo';
 import { Paper, Icon, Flex, Button } from './components/elements';
+import AddTaskModal from './components/modules/AddTaskModal';
 
 interface Props extends State {
   getList: () => void;
 }
 
 const App: React.FC<Props> = ({ tasks, loading, getList }) => {
+  const [showNewTaskModal, setNTMstate] = useState(false);
+  const closeNewTaskModal = () => setNTMstate(false);
   useEffect(() => {
     console.log('useEffect');
-    getList();
-  }, [getList]);
+    if (!tasks.length) getList();
+  }, [getList, tasks.length]);
   useEffect(() => {}, [getList, loading, tasks]);
   function addNewTask() {
-    console.log('create');
+    setNTMstate(true);
   }
   function editTask() {}
   function removeTask() {}
@@ -26,31 +29,36 @@ const App: React.FC<Props> = ({ tasks, loading, getList }) => {
           <Paper>
             <Flex justify="space-between" alignItems="center" className="mb-3">
               <h2>Список задач</h2>
-              <Button variant="create" onClick={addNewTask}>
+              <Button variant="green" onClick={addNewTask}>
                 Добавить
               </Button>
             </Flex>
             <Table bordered>
               <tbody>
                 {tasks.map(task => (
-                  <tr key={task.id}>
+                  <tr key={task.id} className="custom-table-row">
                     <td style={{ width: '10%' }}>{task.id}</td>
                     <td>{task.title}</td>
-                    <td style={{ width: '20%' }}>
-                      <span>
+                    <td style={{ width: '15%' }}>
+                      <Flex
+                        justify="center"
+                        alignItems="center"
+                        spacing="8"
+                        className="custom-flex-box"
+                      >
                         <Icon
-                          variant="create"
+                          title="Изменить"
+                          variant="green"
                           icon={['far', 'edit']}
-                          size="lg"
                           onClick={editTask}
                         />
                         <Icon
-                          variant="remove"
+                          title="Удалить"
+                          variant="red"
                           icon={['far', 'trash-alt']}
-                          size="lg"
                           onClick={removeTask}
                         />
-                      </span>
+                      </Flex>
                     </td>
                   </tr>
                 ))}
@@ -59,6 +67,7 @@ const App: React.FC<Props> = ({ tasks, loading, getList }) => {
           </Paper>
         </Col>
       </Row>
+      <AddTaskModal show={showNewTaskModal} onHide={closeNewTaskModal} />
     </Container>
   );
 };

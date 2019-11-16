@@ -8,17 +8,16 @@ interface Props extends ThemeProps<Theme> {
 }
 
 export default styled(FaIcon)<Props>`
-  margin: 0 10px;
-  /* padding: 3px; */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-width: 2rem;
+  min-height: 1.5rem;
   cursor: pointer;
-  /* border: 1px solid; */
-  /* border-color: ${({ theme, variant }) => theme.button[variant]}; */
-  /* border-radius: 3px; */
-  /* transition: 200ms; */
+  transition: 200ms;
   color: ${({ theme, variant }) => theme.button[variant]};
-  /* background-color: #fff;
+  font-size: 1.25rem;
   &:hover {
-    color: #fff;
-    background-color: ${({ theme, variant }) => theme.button[variant]};
-  } */
+    font-size: 1.34rem;
+  }
 `;
