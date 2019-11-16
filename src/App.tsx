@@ -1,8 +1,7 @@
 import React, { useEffect } from 'react';
 import { connect } from 'react-redux';
-import { Table } from 'react-bootstrap';
+import { Table, Container, Row, Col } from 'react-bootstrap';
 import { dispatcher, State } from './store/todo';
-import { Container, Row, Col } from 'react-bootstrap';
 import { Paper, Icon, Flex, Button } from './components/elements';
 
 interface Props extends State {
