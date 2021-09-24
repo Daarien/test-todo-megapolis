@@ -1,4 +1,3 @@
-import React from 'react';
 import { Modal, Form } from 'react-bootstrap';
 import { Button } from '../elements';
 

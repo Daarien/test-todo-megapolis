@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import { useEffect, useState } from 'react';
 import { connect } from 'react-redux';
 import { Table, Container, Row, Col } from 'react-bootstrap';
 import { dispatcher, State } from './store/todo';
@@ -12,16 +12,20 @@ interface Props extends State {
 const App: React.FC<Props> = ({ tasks, loading, getList }) => {
   const [showNewTaskModal, setNTMstate] = useState(false);
   const closeNewTaskModal = () => setNTMstate(false);
+
   useEffect(() => {
     console.log('useEffect');
     if (!tasks.length) getList();
   }, [getList, tasks.length]);
+
   useEffect(() => {}, [getList, loading, tasks]);
   function addNewTask() {
     setNTMstate(true);
   }
+
   function editTask() {}
   function removeTask() {}
+
   return (
     <Container className="mt-5">
       <Row>
@@ -35,7 +39,7 @@ const App: React.FC<Props> = ({ tasks, loading, getList }) => {
             </Flex>
             <Table bordered>
               <tbody>
-                {tasks.map(task => (
+                {tasks.map((task) => (
                   <tr key={task.id} className="custom-table-row">
                     <td style={{ width: '10%' }}>{task.id}</td>
                     <td>{task.title}</td>
